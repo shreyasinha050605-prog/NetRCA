@@ -1,110 +1,289 @@
-# NetRCA AI
+# 🧠 NetRCA AI – AI-Agent-Based Root Cause Analysis for Network Failures
 
-AI-assisted Network Root Cause Analysis dashboard with a FastAPI backend and React + Vite frontend.
+NetRCA AI is an **AI-powered, graph-based root cause analysis system** that detects, analyzes, and explains **network failures and security-impacting misconfigurations** in real time.
 
-NetRCA ingests network/security logs, correlates incidents, generates structured RCA reports, and visualizes causal chains and timeline evidence for SOC-style investigation workflows.
+The platform combines **log ingestion, causal graph modeling, and AI-agent reasoning** to provide **SOC-style RCA reports** with explainable insights.
 
-## Highlights
+This project was developed as part of the **Network and Information Security (BITE401L)** course.
 
-- Live incident feed with severity scoring and status tracking.
-- AI RCA workflow with structured output (root cause, confidence, impact, remediation).
-- Graph-based RCA visualization for causal relationships.
-- Security-focused ingestion controls:
-  - AES-GCM encryption for stored log payloads.
-  - SHA-512 integrity hashing.
-  - Optional HMAC-SHA512 verification on ingestion requests.
-- Demo scenario seeding for fast local testing (`mixed`, `firewall_misconfig`, `ddos_attack`, `routing_failure`).
+---
 
-## Tech Stack
+# 🚨 Problem Statement
 
-- **Backend:** FastAPI, SQLAlchemy, SQLite
-- **Frontend:** React, Vite, Recharts, Lucide
-- **Runtime:** Python 3.14, Node.js + npm
+Modern network systems generate large volumes of logs, making it difficult to:
 
-## Project Structure
+* Identify the **true root cause** of failures  
+* Distinguish between **attacks vs misconfigurations**  
+* Understand **event relationships**  
+* Perform **real-time analysis**  
 
-```text
-NetRCA/
-├── backend/
-│   ├── main.py
-│   ├── database.py
-│   ├── models.py
-│   ├── schemas.py
-│   ├── services/
-│   └── utils/
-└── frontend/
-    ├── src/
-    ├── package.json
-    └── vite.config.js
-```
+Traditional monitoring systems rely on alerts and manual debugging, leading to:
 
-## Quick Start
+* Slow incident resolution  
+* High operational effort  
+* Inaccurate RCA  
 
-### 1) Backend
+NetRCA AI solves this by providing an **automated, explainable, and security-aware RCA system**.
 
-From project root:
+---
 
-```bash
-cd backend
-.venv/bin/python -m uvicorn main:app --host 127.0.0.1 --port 8000
-```
+# 💡 Solution Overview
 
-If you do not already have dependencies installed in `.venv`, create/install first:
+NetRCA AI integrates:
 
-```bash
-cd backend
-python3 -m venv .venv
-.venv/bin/pip install fastapi uvicorn sqlalchemy pydantic openai networkx
-```
+* Log ingestion & preprocessing  
+* Event correlation engine  
+* Graph-based causal modeling (DAG)  
+* AI-agent reasoning pipeline  
+* Real-time dashboard visualization  
 
-### 2) Frontend
+The system transforms raw logs into **structured incidents**, builds **causal graphs**, and generates **intelligent RCA reports**.
 
-In a second terminal:
+---
 
-```bash
-cd frontend
-npm install
-npm run dev -- --host 127.0.0.1 --port 5173
-```
+# ⚙️ Key Features
 
-Open the URL shown by Vite (typically `http://127.0.0.1:5173`, or next free port if occupied).
+##  1. Log Ingestion Engine
 
-## API Surface (Core)
+The system collects logs from:
 
-- `GET /api/incidents` - list current incidents with correlated data and RCA fields.
-- `GET /api/metrics` - dashboard metrics (risk score, active alarms, trend points).
-- `GET /api/security/posture` - cryptography and transport posture details.
-- `POST /api/seed?scenario=<name>` - seed demo logs and generate/update incidents.
-- `POST /api/analyze/{incident_ref}` - trigger RCA for an incident.
+* Firewalls  
+* VPN Gateways  
+* Servers & Applications  
+* Monitoring Tools  
 
-## Typical Workflow
+Processing includes:
 
-1. Start backend and frontend.
-2. Seed demo logs from the dashboard.
-3. Review live incidents and status.
-4. Trigger RCA on an incident.
-5. Inspect:
-   - structured AI report,
-   - correlated timeline,
-   - graph-based causal chain,
-   - audit/security evidence.
+* Parsing & structuring  
+* Time ordering  
+* Feature extraction  
 
-## Security Notes
+---
 
-- The backend exposes helper endpoints intended for local/demo usage.
-- For production use, restrict CORS, enforce HTTPS/TLS, and enable strict HMAC validation policies.
-- Run Uvicorn with SSL cert/key and deploy behind a hardened reverse proxy.
+##  2. Event Correlation Engine
 
-## Troubleshooting
+The system groups logs using:
 
-- **`Internal Server Error` when seeding/analyzing:** ensure only one backend process is bound to `8000`.
-- **Frontend switches to another port:** `5173` is occupied; use the printed fallback URL.
-- **macOS blocks local binaries (`Operation not permitted` / code signature):** remove quarantine attributes if the project was copied from external sources:
+* Time windows (5-minute intervals)  
+* Resource context (IP, service, port)  
 
-  ```bash
-  xattr -dr com.apple.quarantine backend frontend
-  ```
+It detects:
 
-## License
+* Misconfiguration cascades  
+* DDoS / volumetric attacks  
 
-Add your preferred license (MIT/Apache-2.0/etc.) before public distribution.
+---
+
+##  3. Graph-Based RCA (DAG)
+
+Each log is treated as a node in a graph.
+
+The system:
+
+* Builds a Directed Acyclic Graph (DAG)  
+* Identifies root cause nodes (in-degree = 0)  
+* Finds impact nodes (max downstream effect)  
+* Extracts causal paths  
+
+---
+
+##  4. AI-Agent RCA Engine
+
+The AI generates structured reports including:
+
+* Root Cause  
+* What Changed  
+* Why It Happened  
+* Security Impact  
+* Risk Level  
+* Remediation Steps  
+* Confidence Score  
+
+### Reasoning Flow
+
+Observation → Hypothesis → Validation → Conclusion
+
+---
+
+##  5. Real-Time Dashboard
+
+The frontend provides:
+
+* Live incident feed  
+* Global risk score  
+* Active alarms  
+* Graph-based RCA visualization  
+* SOC-style RCA reports  
+
+---
+
+##  6. Security Layer
+
+The system ensures:
+
+* AES-GCM encryption (data confidentiality)  
+* SHA-512 hashing (data integrity)  
+* HMAC-SHA512 authentication  
+* TLS readiness  
+
+---
+
+##  7. Audit Trail
+
+Tracks:
+
+* Incident creation  
+* RCA execution  
+* Status updates  
+
+Ensures traceability and accountability.
+
+---
+
+# 🏗 System Architecture
+
+Log Sources (Firewall, VPN, Servers, Monitoring)  
+            ↓  
+Log Ingestion & Preprocessing  
+            ↓  
+Event Correlation Engine  
+            ↓  
+Graph Construction (NetworkX DAG)  
+            ↓  
+AI-Agent RCA Engine  
+            ↓  
+Visualization Dashboard (React)  
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+
+* React (Vite)  
+* JavaScript  
+* CSS  
+* SVG Graph Rendering  
+
+## Backend
+
+* FastAPI  
+* Python  
+* NetworkX  
+* SQLAlchemy  
+* SQLite  
+
+## Security
+
+* AES-GCM Encryption  
+* SHA-512 Hashing  
+* HMAC Authentication  
+
+## AI / Reasoning
+
+* LLM-based RCA (optional OpenAI API)  
+* Prompt Engineering  
+* Structured JSON output  
+
+---
+
+# 📂 Project Structure
+
+netrca-ai  
+│  
+├── backend  
+│   ├── main.py  
+│   ├── database.py  
+│   ├── models.py  
+│   ├── schemas.py  
+│   │  
+│   ├── services  
+│   │   ├── ingestion_service.py  
+│   │   ├── correlation_service.py  
+│   │   ├── ai_service.py  
+│   │   ├── queue_service.py  
+│   │   └── audit_service.py  
+│   │  
+│   └── utils  
+│       └── crypto_utils.py  
+│  
+├── frontend  
+│   ├── src  
+│   │   ├── App.jsx  
+│   │   └── index.css  
+│   └── vite.config.js  
+│  
+└── README.md  
+
+---
+
+# 🚀 How to Run the Project
+
+##  Run Backend
+
+cd backend  
+uvicorn main:app --reload  
+
+Backend runs on:  
+http://127.0.0.1:8000  
+
+---
+
+##  Run Frontend
+
+cd frontend  
+npm install  
+npm run dev  
+
+Frontend runs on:  
+http://localhost:5174  
+
+---
+
+# ⚡ Demo Flow
+
+1. Click **Seed Demo Logs**  
+2. Incidents are created automatically  
+3. RCA runs in background  
+4. View:  
+   * Graph-based RCA  
+   * SOC-style report  
+   * Security evidence  
+
+---
+
+#  Example Output
+
+✔ Root Cause Identification  
+✔ Causal Chain (event sequence)  
+✔ Graph Visualization (DAG)  
+✔ AI Reasoning Steps  
+✔ Risk Level & Confidence Score  
+✔ Remediation Suggestions  
+
+---
+
+# 🌍 Impact
+
+NetRCA AI helps:
+
+* Reduce incident resolution time  
+* Improve RCA accuracy  
+* Provide explainable AI insights  
+* Enable real-time monitoring  
+* Enhance network security  
+
+---
+
+# 🔮 Future Improvements
+
+* Real-time streaming (Kafka)  
+* WebSocket live updates  
+* CVE / MITRE ATT&CK integration  
+* Multi-cloud support  
+* Docker & Kubernetes deployment  
+* Self-learning AI agent  
+
+---
+
+# ⚡ NetRCA AI – Intelligent RCA Powered by Graphs + AI
