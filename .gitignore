@@ -1,0 +1,33 @@
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Node
+node_modules/
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment and local config
+.env
+.env.*
+
+# Database and runtime artifacts
+*.db
+*.sqlite
+*.sqlite3
+*.log
+
+# IDE
+.vscode/
+.idea/

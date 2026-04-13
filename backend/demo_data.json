@@ -1,0 +1,11 @@
+[
+  { "source": "ADMIN-UI", "event_type": "config_change", "raw_message": "User admin modified fw-rule-42", "severity": "info" },
+  { "source": "VPN-GW", "event_type": "auth_failure", "raw_message": "Connection timeout for user bob", "severity": "error" },
+  { "source": "VPN-GW", "event_type": "auth_failure", "raw_message": "Connection timeout for user alice", "severity": "error" },
+  { "source": "VPN-GW", "event_type": "auth_failure", "raw_message": "Connection timeout for user charlie", "severity": "error" },
+  { "source": "IDS-CORE", "event_type": "syn_flood", "raw_message": "High rate of SYN packets", "severity": "critical" },
+  { "source": "IDS-CORE", "event_type": "syn_flood", "raw_message": "High rate of SYN packets", "severity": "critical" },
+  { "source": "IDS-CORE", "event_type": "syn_flood", "raw_message": "High rate of SYN packets", "severity": "critical" },
+  { "source": "IDS-CORE", "event_type": "syn_flood", "raw_message": "High rate of SYN packets", "severity": "critical" },
+  { "source": "IDS-CORE", "event_type": "syn_flood", "raw_message": "High rate of SYN packets", "severity": "critical" }
+]
