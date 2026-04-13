@@ -4,8 +4,6 @@ NetRCA AI is an **AI-powered, graph-based root cause analysis system** that dete
 
 The platform combines **log ingestion, causal graph modeling, and AI-agent reasoning** to provide **SOC-style RCA reports** with explainable insights.
 
-This project was developed as part of the **Network and Information Security (BITE401L)** course.
-
 ---
 
 # 🚨 Problem Statement
